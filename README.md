@@ -18,7 +18,7 @@ O projeto foi criado com foco em produtividade, organização e facilidade de us
 - Layout responsivo
 - Acesso ao Instagram da FFL pelo próprio sistema
 
-## Tecnologias utilizadas
+
 
 - HTML
 - CSS
