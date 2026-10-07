@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="theme-color"
+    content="#17191d"
+  >
+
+  <title>Agenda</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+</head>
+
+
+<body>
+
+
+  <div class="app">
+
+
+    <!-- =========================
+         MENU LATERAL
+    ========================== -->
+
+    <aside class="sidebar">
+
+  <!-- LOGO -->
+  <div class="logo">
+    A
+  </div>
+
+
+  <!-- MENU -->
+  <nav class="nav">
+
+    <button
+      class="nav-btn active"
+      data-view="agenda"
+    >
+      <span class="icon">▦</span>
+      <span>Agenda</span>
+    </button>
+
+
+    <button
+      class="nav-btn"
+      data-view="tasks"
+    >
+      <span class="icon">✓</span>
+      <span>Tarefas</span>
+    </button>
+
+
+    <button
+      class="nav-btn"
+      data-view="appointments"
+      title="Compromissos"
+    >
+      <span class="icon">◇</span>
+      <span>Compromissos</span>
+    </button>
+
+
+    <button
+      class="nav-btn"
+      data-view="projects"
+    >
+      <span class="icon">○</span>
+      <span>Projetos</span>
+    </button>
+
+
+    <button
+      class="nav-btn"
+      data-view="more"
+    >
+      <span class="icon">⋯</span>
+      <span>Mais</span>
+    </button>
+
+  </nav>
+
+
+  <!-- PERFIL -->
+  <div
+  class="profile"
+  id="fflProfile"
+  title="Instagram FFL"
+>
+  FFL
+</div>
+
+
+<!-- =========================
+     MENU MAIS
+========================= -->
+
+<div
+  class="more-menu"
+  id="moreMenu"
+>
+
+  <button
+  type="button"
+  class="more-menu-item"
+  id="dataBtn"
+>
+  <span>▣</span>
+
+  <div>
+    <strong>Meus dados</strong>
+    <small>Backup e dados deste navegador</small>
+  </div>
+</button>
+
+
+  <button
+    type="button"
+    class="more-menu-item"
+    id="settingsBtn"
+  >
+    <span>⚙</span>
+
+    <div>
+      <strong>Configurações</strong>
+      <small>Aparência e preferências</small>
+    </div>
+  </button>
+
+  <a
+  href="https://www.instagram.com/ffl.web/"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="more-menu-item mobile-ffl-link"
+>
+  <span class="mobile-ffl-logo">
+    FFL
+  </span>
+
+  <div>
+    <strong>Instagram FFL</strong>
+    <small>Conheça nossos projetos</small>
+  </div>
+</a>
+
+
+
+</div>
+</aside>
+
+
+<!-- =========================
+     CONFIGURAÇÕES
+========================= -->
+
+<dialog
+  id="settingsModal"
+  class="settings-modal"
+>
+
+  <div class="settings-box">
+
+    <div class="settings-header">
+
+      <div>
+        <span class="modal-small-title">
+          Preferências
+        </span>
+
+        <h2>
+          Configurações
+        </h2>
+      </div>
+
+
+      <button
+        type="button"
+        class="modal-close"
+        id="closeSettingsBtn"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="settings-section">
+
+      <div class="settings-option">
+
+        <div>
+          <strong>
+            Modo escuro
+          </strong>
+
+          <span>
+            Usar aparência escura no calendário
+          </span>
+        </div>
+
+
+        <label class="switch">
+
+          <input
+            type="checkbox"
+            id="darkModeToggle"
+          >
+
+          <span class="switch-slider"></span>
+
+        </label>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</dialog>
+
+
+<!-- =========================
+     MEUS DADOS
+========================= -->
+
+<dialog
+  id="dataModal"
+  class="settings-modal"
+>
+
+  <div class="settings-box">
+
+    <div class="settings-header">
+
+      <div>
+        <span class="modal-small-title">
+          Armazenamento local
+        </span>
+
+        <h2>
+          Meus dados
+        </h2>
+      </div>
+
+
+      <button
+        type="button"
+        class="modal-close"
+        id="closeDataBtn"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="data-info">
+      Seus dados ficam salvos somente neste navegador.
+    </div>
+
+
+    <div class="data-actions">
+
+      <button
+        type="button"
+        class="data-action-button"
+        id="exportDataBtn"
+      >
+        <strong>Exportar backup</strong>
+        <span>Salvar uma cópia da sua agenda</span>
+      </button>
+
+
+      <button
+        type="button"
+        class="data-action-button"
+        id="importDataBtn"
+      >
+        <strong>Importar backup</strong>
+        <span>Restaurar uma agenda salva anteriormente</span>
+      </button>
+
+
+      <button
+        type="button"
+        class="data-action-button danger"
+        id="clearDataBtn"
+      >
+        <strong>Apagar meus dados</strong>
+        <span>Excluir tudo salvo neste navegador</span>
+      </button>
+
+    </div>
+
+
+    <input
+      type="file"
+      id="importDataFile"
+      accept=".json,application/json"
+      hidden
+    >
+
+  </div>
+
+</dialog>
+
+
+
+    <!-- =========================
+         CONTEÚDO PRINCIPAL
+    ========================== -->
+
+    <main class="main">
+
+
+
+      <!-- =========================
+           TOPO
+      ========================== -->
+
+      <header class="topbar">
+
+
+        <div>
+
+
+          <div class="eyebrow">
+            Minha rotina
+          </div>
+
+
+          <h1 class="title">
+            Semana
+          </h1>
+
+
+        </div>
+
+
+
+
+        <div class="top-actions">
+
+
+          <button
+            class="btn square"
+            id="previousWeekBtn"
+            title="Semana anterior"
+          >
+            ←
+          </button>
+
+
+
+          <button
+            class="btn"
+            id="todayBtn"
+          >
+            Hoje
+          </button>
+
+
+
+          <button
+            class="btn square"
+            id="nextWeekBtn"
+            title="Próxima semana"
+          >
+            →
+          </button>
+
+
+
+          <button
+            class="btn primary"
+            id="addItemBtn"
+          >
+            + Adicionar
+          </button>
+
+
+        </div>
+
+
+      </header>
+
+
+
+
+
+      <!-- =========================
+           ÁREA PRINCIPAL
+      ========================== -->
+
+      <div class="workspace">
+
+
+
+
+
+        <!-- =========================
+             CALENDÁRIO
+        ========================== -->
+
+        <section class="calendar-shell">
+
+          <!-- SETA LATERAL ESQUERDA -->
+
+<button
+  class="side-calendar-arrow side-calendar-arrow-left"
+  id="sidePrevBtn"
+  title="Anterior"
+>
+  ‹
+</button>
+
+
+<!-- SETA LATERAL DIREITA -->
+
+<button
+  class="side-calendar-arrow side-calendar-arrow-right"
+  id="sideNextBtn"
+  title="Próximo"
+>
+  ›
+</button>
+
+
+
+          <!-- CABEÇALHO DO CALENDÁRIO -->
+
+          <div class="calendar-header">
+
+
+            <div class="month-title">
+
+
+              <strong id="monthName">
+                Outubro
+              </strong>
+
+
+              <span id="yearNumber">
+                2026
+              </span>
+
+
+            </div>
+
+
+
+
+            <!-- MODOS DE VISUALIZAÇÃO -->
+
+            <div class="segmented">
+
+
+              <button
+                type="button"
+                data-calendar-view="day"
+              >
+                Dia
+              </button>
+
+
+              <button
+                type="button"
+                class="active"
+                data-calendar-view="week"
+              >
+                Semana
+              </button>
+
+
+              <button
+                type="button"
+                data-calendar-view="month"
+              >
+                Mês
+              </button>
+
+
+            </div>
+
+
+          </div>
+
+
+
+
+
+          <!-- =========================
+               VISÃO SEMANAL
+          ========================== -->
+
+          <div
+            class="calendar-view active"
+            id="weekCalendarView"
+          >
+
+
+            <div
+              class="calendar-grid"
+              id="calendarGrid"
+            >
+
+
+              <!--
+                O JavaScript vai criar aqui:
+
+                - Segunda
+                - Terça
+                - Quarta
+                - Quinta
+                - Sexta
+
+                além dos horários e compromissos.
+              -->
+
+
+            </div>
+
+
+          </div>
+
+
+
+
+
+          <!-- =========================
+               VISÃO DO DIA
+          ========================== -->
+
+          <div
+            class="calendar-view"
+            id="dayCalendarView"
+          >
+
+
+            <div class="day-view-header">
+
+
+              <button
+                class="day-change-btn"
+                id="previousDayBtn"
+              >
+                ←
+              </button>
+
+
+              <div>
+
+
+                <span id="selectedDayWeek">
+                  Terça-feira
+                </span>
+
+
+                <strong id="selectedDayDate">
+                  06 de outubro
+                </strong>
+
+
+              </div>
+
+
+              <button
+                class="day-change-btn"
+                id="nextDayBtn"
+              >
+                →
+              </button>
+
+
+            </div>
+
+
+
+            <div
+              id="dayTimeline"
+              class="day-timeline"
+            >
+            </div>
+
+
+          </div>
+
+
+
+
+
+          <!-- =========================
+               VISÃO DO MÊS
+          ========================== -->
+
+          <div
+            class="calendar-view"
+            id="monthCalendarView"
+          >
+
+
+            <div
+              class="month-grid"
+              id="monthGrid"
+            >
+            </div>
+
+
+          </div>
+
+
+        </section>
+
+
+
+
+
+        <!-- =========================
+             COLUNA DA DIREITA
+        ========================== -->
+
+        <aside class="side-column">
+
+
+
+
+
+          <!-- =========================
+               TAREFAS DE HOJE
+          ========================== -->
+
+          <section class="panel">
+
+
+            <div class="panel-head">
+
+
+              <h3>
+                Tarefas de hoje
+              </h3>
+
+
+              <span id="taskCounter">
+                0 de 0
+              </span>
+
+
+            </div>
+
+
+
+
+            <!-- PROGRESSO -->
+
+            <div class="progress">
+
+              <div
+                id="progressBar"
+              >
+              </div>
+
+            </div>
+
+
+
+
+            <!-- LISTA -->
+
+            <div
+              class="tasks"
+              id="todayTasks"
+            >
+
+
+              <!--
+                As tarefas serão adicionadas
+                pelo JavaScript.
+              -->
+
+
+            </div>
+
+
+
+
+            <!-- ADICIONAR -->
+
+            <button
+              class="add-task"
+              id="quickAddTaskBtn"
+            >
+              + Adicionar tarefa
+            </button>
+
+
+          </section>
+
+
+
+
+
+          <!-- =========================
+               RESUMO DO DIA
+          ========================== -->
+
+          <section class="panel">
+
+
+            <div class="panel-head">
+
+
+              <h3>
+                Resumo do dia
+              </h3>
+
+
+              <span id="summaryDate">
+                Hoje
+              </span>
+
+
+            </div>
+
+
+
+
+            <div class="summary">
+
+
+              <div class="summary-row">
+
+                <span>
+                  Tarefas
+                </span>
+
+                <strong id="summaryTasks">
+                  0
+                </strong>
+
+              </div>
+
+
+
+              <div class="summary-row">
+
+                <span>
+                  Concluídas
+                </span>
+
+                <strong id="summaryCompleted">
+                  0
+                </strong>
+
+              </div>
+
+
+
+              <div class="summary-row">
+
+                <span>
+                  Compromissos
+                </span>
+
+                <strong id="summaryAppointments">
+                  0
+                </strong>
+
+              </div>
+
+
+
+              <div class="summary-row">
+
+                <span>
+                  Tempo planejado
+                </span>
+
+                <strong id="summaryTime">
+                  0h
+                </strong>
+
+              </div>
+
+
+            </div>
+
+
+          </section>
+
+
+
+
+
+          <!-- =========================
+               PRÓXIMO COMPROMISSO
+          ========================== -->
+
+          <section
+            class="panel next-panel"
+            id="nextAppointmentPanel"
+          >
+
+
+            <div class="panel-head">
+
+
+              <h3>
+                Próximo
+              </h3>
+
+
+              <span>
+                Agenda
+              </span>
+
+
+            </div>
+
+
+
+
+            <div
+              class="next-appointment"
+              id="nextAppointment"
+            >
+
+
+              <span class="next-empty">
+                Nenhum compromisso próximo.
+              </span>
+
+
+            </div>
+
+
+          </section>
+
+
+        </aside>
+
+
+      </div>
+
+
+    </main>
+
+
+  </div>
+
+
+
+
+
+  <!-- =========================
+       BOTÃO MOBILE
+  ========================== -->
+
+  <button
+    class="mobile-add-button"
+    id="mobileAddButton"
+  >
+    +
+  </button>
+
+
+
+
+
+  <!-- =========================
+       MODAL ADICIONAR / EDITAR
+  ========================== -->
+
+  <dialog id="itemModal">
+
+
+    <form id="itemForm">
+
+
+
+      <!-- CABEÇALHO -->
+
+      <div class="modal-header">
+
+
+        <div>
+
+
+          <span class="modal-small-title">
+            Agenda
+          </span>
+
+
+          <h2 id="modalTitle">
+            Novo item
+          </h2>
+
+
+        </div>
+
+
+
+        <button
+          type="button"
+          class="modal-close"
+          id="closeModalBtn"
+        >
+          ×
+        </button>
+
+
+      </div>
+
+
+
+
+
+      <!-- ID INTERNO -->
+
+      <input
+        type="hidden"
+        id="itemId"
+      >
+
+
+
+
+
+      <!-- =========================
+           TIPO
+      ========================== -->
+
+      <div class="item-type-selector">
+
+
+        <button
+          type="button"
+          class="item-type-button active"
+          data-type="task"
+        >
+          Tarefa
+        </button>
+
+
+        <button
+          type="button"
+          class="item-type-button"
+          data-type="appointment"
+        >
+          Compromisso
+        </button>
+
+
+      </div>
+
+
+      <input
+        type="hidden"
+        id="itemType"
+        value="task"
+      >
+
+
+
+
+
+      <!-- =========================
+           TÍTULO
+      ========================== -->
+
+      <label class="form-field">
+
+
+        <span>
+          Título
+        </span>
+
+
+        <input
+          type="text"
+          id="itemTitle"
+          placeholder="Ex.: Curso de Python"
+          maxlength="100"
+          required
+        >
+
+
+      </label>
+
+
+
+
+
+      <!-- =========================
+           DATA
+      ========================== -->
+
+      <div class="form-row">
+
+
+        <label class="form-field">
+
+
+          <span>
+            Data
+          </span>
+
+
+          <input
+            type="date"
+            id="itemDate"
+            required
+          >
+
+
+        </label>
+
+
+
+
+        <label class="form-field">
+
+
+          <span>
+            Repetir
+          </span>
+
+
+          <select id="itemRepeat">
+
+
+            <option value="none">
+              Não repetir
+            </option>
+
+
+            <option value="weekly">
+              Toda semana
+            </option>
+
+
+            <option value="daily">
+              Todos os dias
+            </option>
+
+
+          </select>
+
+
+        </label>
+
+
+      </div>
+
+
+
+
+
+      <!-- =========================
+           HORÁRIO
+      ========================== -->
+
+      <div class="form-row">
+
+
+        <label class="form-field">
+
+
+          <span>
+            Início
+          </span>
+
+
+          <input
+            type="time"
+            id="itemStart"
+          >
+
+
+        </label>
+
+
+
+
+        <label class="form-field">
+
+
+          <span>
+            Fim
+          </span>
+
+
+          <input
+            type="time"
+            id="itemEnd"
+          >
+
+
+        </label>
+
+
+      </div>
+
+
+
+
+
+      <!-- =========================
+           COR
+      ========================== -->
+
+      <div class="form-field">
+
+
+        <span>
+          Cor
+        </span>
+
+
+
+
+        <div class="color-selector">
+
+
+          <button
+            type="button"
+            class="color-button blue selected"
+            data-color="blue"
+          >
+          </button>
+
+
+          <button
+            type="button"
+            class="color-button green"
+            data-color="green"
+          >
+          </button>
+
+
+          <button
+            type="button"
+            class="color-button orange"
+            data-color="orange"
+          >
+          </button>
+
+
+          <button
+            type="button"
+            class="color-button purple"
+            data-color="purple"
+          >
+          </button>
+
+
+          <button
+            type="button"
+            class="color-button red"
+            data-color="red"
+          >
+          </button>
+
+          <label
+          class="custom-color-button"
+          id="customColorLabel"
+          title="Escolher outra cor"
+        >
+
+          <span>
+            +
+          </span>
+
+          <input
+            type="color"
+            id="customColorPicker"
+            value="#315efb"
+          >
+
+        </label>
+
+
+        </div>
+
+
+        <input
+          type="hidden"
+          id="itemColor"
+          value="blue"
+        >
+
+
+      </div>
+
+
+
+
+
+      <!-- =========================
+           IMPORTANTE
+      ========================== -->
+
+      <label class="important-option">
+
+
+        <input
+          type="checkbox"
+          id="itemImportant"
+        >
+
+
+        <div>
+
+
+          <strong>
+            Marcar como importante
+          </strong>
+
+
+          <span>
+            O item recebe um destaque visual.
+          </span>
+
+
+        </div>
+
+
+      </label>
+
+
+
+
+
+      <!-- =========================
+           OBSERVAÇÃO
+      ========================== -->
+
+      <label class="form-field">
+
+
+        <span>
+          Observação
+        </span>
+
+
+        <textarea
+          id="itemNotes"
+          rows="3"
+          maxlength="300"
+          placeholder="Opcional"
+        ></textarea>
+
+
+      </label>
+
+
+
+
+
+      <!-- =========================
+           BOTÕES DO MODAL
+      ========================== -->
+
+      <div class="modal-actions">
+
+
+        <button
+          type="button"
+          class="delete-button hidden"
+          id="deleteItemBtn"
+        >
+          Excluir
+        </button>
+
+
+        <div class="modal-space">
+        </div>
+
+
+        <button
+          type="button"
+          class="cancel-button"
+          id="cancelModalBtn"
+        >
+          Cancelar
+        </button>
+
+
+        <button
+          type="submit"
+          class="save-button"
+        >
+          Salvar
+        </button>
+
+
+      </div>
+
+
+    </form>
+
+
+  </dialog>
+
+
+<!-- =========================
+     CONFIRMAR EXCLUSÃO
+========================= -->
+
+<dialog
+  id="deleteModal"
+  class="delete-modal"
+>
+
+  <div class="delete-confirm-box">
+
+    <div class="delete-warning">
+      !
+    </div>
+
+
+    <div class="delete-confirm-content">
+
+      <span class="delete-small-title">
+        Excluir item
+      </span>
+
+      <h3>
+        Tem certeza?
+      </h3>
+
+      <p>
+        Você está prestes a excluir
+
+        <strong id="deleteItemName">
+          este item
+        </strong>.
+
+        Essa ação não poderá ser desfeita.
+      </p>
+
+    </div>
+
+
+    <div class="delete-confirm-actions">
+
+      <button
+        type="button"
+        class="cancel-button"
+        id="cancelDeleteBtn"
+      >
+        Cancelar
+      </button>
+
+
+      <button
+        type="button"
+        class="confirm-delete-button"
+        id="confirmDeleteBtn"
+      >
+        Excluir
+      </button>
+
+    </div>
+
+  </div>
+
+</dialog>
+
+
+  <!-- =========================
+       MENSAGEM
+  ========================== -->
+
+  <div
+    class="toast"
+    id="toast"
+  >
+  </div>
+
+
+
+
+
+  <!-- JAVASCRIPT -->
+
+  <script src="script.js"></script>
+
+
+</body>
+
+</html>
