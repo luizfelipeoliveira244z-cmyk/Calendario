@@ -40,3 +40,4 @@ A aplicação não utiliza banco de dados ou sistema de login. Os dados são arm
 ---
 
 Desenvolvido por **Luiz Felipe dos Santos Oliveira**
+Minha marca: **FFL** — @ffl.web
