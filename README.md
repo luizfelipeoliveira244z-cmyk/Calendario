@@ -1,4 +1,3 @@
-# Calendário FFL
 
 Calendário pessoal desenvolvido para organizar tarefas, compromissos e rotina de forma simples e visual.
 
